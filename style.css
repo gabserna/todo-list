@@ -1,10 +1,33 @@
+* {
+}
+
+
 body {
     background-color: #000;
     color: #fff;
 }
 .container {
+    border: 1px dashed #fff;
     margin: 0 auto;
-    border: 2px solid #fff;
-    width: 70%;
+    width: 80%;
     height: 600px;
+}
+h1 {
+    color: yellowgreen;
+    font-weight: bolder;
+    font-size: 6vw;
+    padding: 0;
+    margin: 0;
+}
+
+.container-fluid{
+    border: 3px dashed blue;
+}
+
+.row {
+    height: 30vw;
+}
+
+.col {
+    border: 2px solid yellow;
 }
