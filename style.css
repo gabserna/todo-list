@@ -20,14 +20,32 @@ h1 {
     margin: 0;
 }
 
+
 .container-fluid{
     border: 3px dashed blue;
 }
 
 .row {
     height: 30vw;
+    display: flex;
 }
 
 .col {
     border: 2px solid yellow;
+    margin: 0;
+    padding: 0;
+}
+.list-group {
+    /*justify-content: stretch;*/
+}
+
+/* style temporal */
+input {
+    color: #000;
+    width: 80%;
+}
+
+button {
+    color: #000;
+    width: 18%;
 }

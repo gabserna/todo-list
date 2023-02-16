@@ -22,12 +22,30 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col col-sm-4">text-1</div>
-                <!-- list of todo lists go here -->
+                <div class="col col-sm-4">
+                    <input id="new-list-name-input">
+                    <button class="btn btn-primary" onclick="addList()">Add</button>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-light">text 1</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-light">text 2</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-light">text 3</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-light">text 4</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-light">text 5</a>
+                    </div>
+                </div>
                 
-                <div class="col col-sm-8">text-2</div>
-                <!-- current todo list name goes here -->
-                <!-- current todo list goes here -->
+                <div class="col col-sm-8">
+                    <h2>Task to do</h2>
+                    <div class="list-group">
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-light"><input type="checkbox" id="${'todo-' + todo.id}" onclick="completeTodo(${todo.id})">text 1</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-light">text 2</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-light">text 3</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-light">text 4</a>
+                        <a href="#" class="list-group-item list-group-item-action list-group-item-light">text 5</a>
+
+                        <input type="checkbox" id="${'todo-' + todo.id}" onclick="completeTodo(${todo.id})">
+                    </div>
+                </div>
             </div>
         </div>
     </div>
