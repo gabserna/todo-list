@@ -1,83 +1,90 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.6.3/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
-    <link rel="stylesheet" href="style.css">
-    <title>2P1-ToDoList</title>
-</head>
-
-<body>
-    <div class="outer">
+    <head>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous">
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <link rel="stylesheet" href="style.css">
+        <title>2P1-ToDoList</title>
+    </head>
+    <body>
+        <div class="outer">
             <div class="wrapper1">
                 <p class="main-title">Things to do</p>
             </div>
             <div class="gap"></div>
             <div class="wrapper2">
                 <div class="inner inner-nav">
-                <nav class="navbar">
-                    <div><h3 class="animate__bounceIn welcome">Welcome: ToDo App</h3></div>
-                </nav>
+                    <nav class="navbar">
+                        <div><h3 class="animate__bounceIn welcome">Welcome: ToDo App</h3></div>
+                    </nav>
                 </div>
+                <div class="container-fluid main">
+                    <div class="row">
+                        <div class="listas col-3">
+                            <div class="create-list">
+                                <input class="new-list" id="input-box"
+                                    type="text" size="24" placeholder="Add a new category here!">
+                                <button class="add-button1"
+                                    onclick="newCategory()"><i class="fas fa-plus"></i></button>
+                            </div>
+                            <div id="lists"></div>
+                        </div>
+                        <div class="col-9">
+                            <div class="inner">
+                                <div class="listEditor">
+                                    <div id="tasksList"></div>
 
-        <div class="container-fluid main">
-            <div class="row">
-              <div  class="listas col-3">
-                <div class="create-list">
-                    <input class="new-list" id="input-box" type="text" size="24" placeholder="Add a new category here!">
-                    <button class="add-button1" onclick="newCategory()"><i class="fas fa-plus"></i></button>
-                </div>
-                <div id="lists"></div>
-              </div>
-
-              <div class="col-9">
-                <div class="inner">
-                    <div  class="listEditor">
-                        <div id="tasksList"></div>
-                        
-                        <div id="dropdown" class="menu">
-                            <button class="btn" id="dropdownMenuButton" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-caret-left">&nbsp;</i><i class="fa fa-trash"></i></button>
-
-                            <div class="collapse" id="collapseExample">
-                                <a class="card card-body" onclick="removeAllDone()">Completed tasks</a>
-                                <a class="card card-body" onclick="removeList()">This category</a>
-                                <a class="card card-body" onclick="resetEverything()">Everything</a>
+                                    <div id="dropdown" class="menu">
+                                        <button class="btn"
+                                            id="dropdownMenuButton"
+                                            type="button" data-toggle="collapse"
+                                            data-target="#collapseExample"
+                                            aria-expanded="false"
+                                            aria-controls="collapseExample"><i
+                                                class="fa fa-caret-left">&nbsp;</i><i
+                                                class="fa fa-trash"></i></button>
+                                        <div class="collapse"
+                                            id="collapseExample">
+                                            <a class="card card-body"
+                                                onclick="removeAllDone()">Completed
+                                                tasks</a>
+                                            <a class="card card-body"
+                                                onclick="removeList()">This
+                                                category</a>
+                                            <a class="card card-body"
+                                                onclick="resetEverything()">Everything</a>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="list-group">
+                                    <ul class="list-group">
+                                        <li id="create" class="list-group-item
+                                            create-new">
+                                            <div id="initial"
+                                                class="create-task">
+                                                <button class="add-button2"
+                                                    onclick="newTask()"><i
+                                                        class="fas fa-plus"></i></button>
+                                                <input id="inputBox"
+                                                    class="inputBox" type="text"
+                                                    placeholder="Add your new task here!">
+                                            </div>
+                                        </li>
+                                    </ul>
+                                </div>
+                                <div id="mythingsToDo-list"></div>
                             </div>
                         </div>
                     </div>
-
-                    <div id="list-group">
-                        <ul  class="list-group">
-                            <li id="create" class="list-group-item create-new">
-                                <div id="initial" class="create-task">
-                                    <button class="add-button2" onclick="newTask()"><i class="fas fa-plus"></i></button>
-                                    <input id="inputBox" class="inputBox" type="text" placeholder="Add your new task here!" >
-                                </div>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div id="mythingsToDo-list"></div>
-                    
                 </div>
-              </div>              
             </div>
         </div>
-        </div>
-    </div>    
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <script src="script.js"></script>
-</body>
+        <script src="script.js"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    </body>
 </html>
