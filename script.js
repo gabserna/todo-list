@@ -13,8 +13,7 @@ function showToDo() {
       '<div class="newcateg"><i class="fa fa-list-ul"></i>&nbsp;Categories</div>';
   }
 
-  // muestra la lista
-  let domThing = '<ul class="list-group">';    //domThing cambiar?
+  let domThing = '<ul class="list-group">';
   lists.forEach((list) => {
     domThing += `<li id="${list.id}" class="list-group-item list-box" onclick="changeList(this.id)">${list.name}</li>`;
   });
@@ -37,7 +36,6 @@ function showToDo() {
   }
 
   document.getElementById('mythingsToDo-list').innerHTML = taskManager;
-  //muestra la lista activa
   lists.forEach((list) => {
     if (thingsToDo.id === list.id) {
       document.getElementById(thingsToDo.id).classList.add('active')
@@ -139,9 +137,6 @@ function resetEverything() {
   console.log(JSON.parse(localStorage.getItem('lists')))
 }
 
-
-
-/**REVISAR storage NOT WORKING!!!!!!  */
 function storeThis() {
   if (JSON.parse(localStorage.getItem('lists')) !== null) {
     lists = JSON.parse(localStorage.getItem('lists'));
@@ -156,9 +151,6 @@ function storeThis() {
 }
 storeThis();
 showToDo();
-
-
-
 
 
 // add class checked to checked item of list
