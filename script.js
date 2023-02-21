@@ -28,12 +28,25 @@ function showToDo() {
     thingsToDo.todos.forEach((list) => {
       if (list.completed === false) {
         taskManager +=
-          `<li id="${list.id}" class="tarea list-group-item"><label class="checkbox-container"><input id="${list.id}" type="checkbox" onclick="taskDone(this.id)"></label><div id="${list.id}" class="taskText" onclick="taskDone(this.id)">${list.text}</div><button type="submit" id="${list.id}" class="btncard card card-body" onclick="removeTodo(this.id)"><i class="fa fa-close"></i></i></button></li>`;
+          `<li id="${list.id}" class="tarea list-group-item"><label class="checkbox-container"><input id="${list.id}" type="checkbox" onclick="taskDone(this.id)"></label><div id="${list.id}" class="taskText" onclick="taskDone(this.id)">${list.text}</div>
+          <i type="submit" id="${list.id}" class="btncard card card-body fas fa-edit" onclick="editPost(this)"></i>
+          <div class="gap"></div>
+          <i type="submit" id="${list.id}" class="btncard card card-body fa fa-close" onclick="removeTodo(this.id)"></i>
+          </li>`;
       } else {
-        taskManager += `<li id="${list.id}" class="tarea list-group-item"><label class="checkbox-container"><input id="${list.id}" type="checkbox" checked onclick="taskDone(this.id)"></label><div id="${list.id}" class="taskText" onclick="taskDone(this.id)">${list.text}</div><button type="submit" id="${list.id}" class="btncard card card-body" onclick="removeTodo(this.id)"><i class="fa fa-close"></i></i></button></li>`;
+        taskManager += `<li id="${list.id}" class="tarea list-group-item"><label class="checkbox-container"><input id="${list.id}" type="checkbox" checked onclick="taskDone(this.id)"></label><div id="${list.id}" class="taskText" onclick="taskDone(this.id)">${list.text}</div>
+        <i type="submit" id="${list.id}" class="btncard card card-body fas fa-edit" onclick="editPost(this)"></i>
+        <div class="gap"></div>
+        <i type="submit" id="${list.id}" class="btncard card card-body fa fa-close" onclick="removeTodo(this.id)"></i></li>`;
       }
     });
   }
+// edit task but NOT WORKING!   <<<<<<<<<<<<<<<
+let editPost = (e) => {
+  input.value = e.parentElement.previousElementSibling.innerHTML;
+  e.parentElement.parentElement.remove();
+};
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
   document.getElementById('mythingsToDo-list').innerHTML = taskManager;
   lists.forEach((list) => {
