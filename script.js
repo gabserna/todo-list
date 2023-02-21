@@ -3,24 +3,24 @@ let lists;
 
 function showToDo() {
     if (lists[0]) {
-    document.getElementById('initial').style.display = "flex"
-    document.getElementById('dropdown').style.display = "initial"
-    document.getElementById('list-group').style.display = "initial"
+    document.getElementById('initial').style.display="flex";
+    document.getElementById('dropdown').style.display="initial";
+    document.getElementById('list-group').style.display="initial";
     } else {
-    document.getElementById('initial').style.display = "none"
-    document.getElementById('dropdown').style.display = "none"
-    document.getElementById('list-group').style.display = "none"
+    document.getElementById('initial').style.display="none";
+    document.getElementById('dropdown').style.display="none";
+    document.getElementById('list-group').style.display="none";
     document.getElementById('tasksList').innerHTML = 
-    '<div class="newcateg"><i class="fa fa-list-ul"></i>&nbsp;Categories</div>'
+    '<div class="newcateg"><i class="fa fa-list-ul"></i>&nbsp;Categories</div>';
 }
 
 // muestra la lista
-let listsHtml = '<ul class="list-group">';
+let domThing = '<ul class="list-group">';    //domThing cambiar?
 lists.forEach((list) => {
-  listsHtml += `<li id="${list.id}" class="list-group-item list-box" onclick="changeList(this.id)">${list.name}</li>`;
+  domThing += `<li id="${list.id}" class="list-group-item list-box" onclick="changeList(this.id)">${list.name}</li>`;
 });
-listsHtml += '</ul>';
-document.getElementById('lists').innerHTML = listsHtml;
+domThing += '</ul>';
+document.getElementById('lists').innerHTML = domThing;
 if (lists[0]){
     document.getElementById('tasksList').innerText = thingsToDo.name;
 }
@@ -58,26 +58,22 @@ lists.forEach((list) => {
 })
 }
 
-function addList() {
-  const text = document.getElementById('list-input-box').value;
+function newCategory() {
+  const text = document.getElementById('input-box').value;
   if(text === '') {
     alert( 'Please write a list name!' );
     return false;
   } else {
     let id = randomIdentifier()
-    lists.push({
-        id: id,
-        name: text,
-        todos: []
-      })
+    lists.push({id: id, name: text, todos: []})
     thingsToDo = lists[lists.length - 1]
-    document.getElementById('list-input-box').value = ''
+    document.getElementById('input-box').value = ''
     showToDo();
-    save();
+    keepRecord();
   }
 }
 
-function addTodo() {
+function newTask() {
   const text = document.getElementById('inputBox').value;
   if(text === '') {
     alert( 'You need to add some text!' );
@@ -93,7 +89,7 @@ function addTodo() {
     })
     document.getElementById('inputBox').value = ''
     showToDo();
-    save();
+    keepRecord();
   }
  }
 
@@ -102,14 +98,14 @@ function addTodo() {
   lists.splice(lists.findIndex((elem) => elem.id === thingsToDo.id), 1)
   thingsToDo = lists[0]
   showToDo();
-  save();
+  keepRecord();
  }
 
  function removeTodo(clickedId) {
   thingsToDo.todos.splice(thingsToDo.todos.findIndex((elem) => elem.id === clickedId), 1)
   console.log(thingsToDo.todos)
   showToDo();
-  save();
+  keepRecord();
  }
 
  function taskDone(clickedId) {
@@ -119,20 +115,20 @@ function addTodo() {
       thingsToDo.todos[thingsToDo.todos.findIndex((elem) => elem.id === clickedId)].completed = false
   }
   showToDo();
-  save();
+  keepRecord();
  }
 
  function removeAllDone() {
   thingsToDo.todos = thingsToDo.todos.filter((elem) => elem.completed === false);
   showToDo();
-  save();
+  keepRecord();
  }
 
  function changeList(clickedId) {
   if (clickedId !== thingsToDo.id) {
       thingsToDo = lists[lists.findIndex((elem) => elem.id === clickedId)]
       showToDo();
-      save();
+      keepRecord();
   }
   
  }
@@ -141,23 +137,23 @@ function addTodo() {
 function randomIdentifier() {
   return Math.random().toString(36).slice(2)
 }
-function save() {
+function keepRecord() {
   localStorage.setItem('thingsToDo', JSON.stringify(thingsToDo)); 
   localStorage.setItem('lists', JSON.stringify(lists));
  }
-function reset() {
+function resetEverything() {
   localStorage.removeItem('thingsToDo', JSON.stringify(thingsToDo)); 
   localStorage.removeItem('lists', JSON.stringify(lists));
   console.log(JSON.parse(localStorage.getItem('lists')))
-  setStorage();
+  storeThis();
   showToDo();
   console.log(JSON.parse(localStorage.getItem('lists')))
 }
 
 
 
-/**REVISAR funcionalidad de storage NOT WORKING!!!!!!  */
-function setStorage() {
+/**REVISAR storage NOT WORKING!!!!!!  */
+function storeThis() {
   if(JSON.parse(localStorage.getItem('lists')) !== null) {
     lists = JSON.parse(localStorage.getItem('lists'));
   } else {
@@ -169,8 +165,8 @@ function setStorage() {
     thingsToDo = []
   }
 }
-setStorage()
-showToDo()
+storeThis();
+showToDo();
 
 
 
@@ -178,7 +174,9 @@ showToDo()
 
 // add class checked to checked item of list
 lists.addEventListener( 'click', function ( event ) {
+
   const targetElement = event.target;
+  
   if ( event && targetElement.tagName === 'LI' ) {
       targetElement.classList.toggle( 'checked' );
   }

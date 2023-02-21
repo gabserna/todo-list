@@ -1,0 +1,263 @@
+@import 'color-pallete';
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,300;0,500;1,900&display=swap');
+
+body {
+    padding: 1vh;
+    box-sizing: border-box;
+    margin: $margin-center;
+    display: flex;
+    justify-content: center;
+    background-color: $color-main;
+    background-image: url("diagmonds-light.png");
+    font-family: 'Roboto', sans-serif;
+  }
+  
+  .outer {
+    width: auto;
+    height: 90vh;   /*altura del container*/
+    border-radius: 20px;
+    margin: $margin-center;
+    padding: $padd-cero;
+    display: flex;
+    flex-direction: row;
+  }
+  .wrapper1 {
+    width: 8vw;
+  }
+  .gap {
+    width: 1vw;
+  }
+  .wrapper2 {
+    background-color: $container-bgnd;
+    width: 70vw;
+    padding: 1em;
+    border-radius: 20px;
+  }
+  
+  .main-title {
+    margin: 0;
+    padding: $padd-cero;
+    width: 8vw;
+    height: 90vh;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    font-size: 12vh;
+    font-weight: 900;
+    text-transform: uppercase;
+    color: $container-bgnd;
+    letter-spacing: 0.1vw;
+    background-color: $main-title-color;
+    border-radius: 20px;
+    text-align: center;
+  }
+  
+  h1 {
+    font-weight: bolder;
+    font-size: 6vw;
+    padding: $padd-cero;
+    margin: 0;
+  }
+  h3 {
+    display: inline-block;
+    margin: 0 0.5rem;
+  }
+  .inner-nav { 
+    padding: $padd-cero;
+    margin: $margin-center;
+    width: 97%;
+    background-color: $color-main;
+    border-radius: 18px;
+  }
+  .navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .welcome {
+    color: $container-bgnd;
+    font-size: 2vw;
+    margin: 0;
+  }
+  
+  .row {
+    box-sizing: border-box;
+    margin: $margin-center;
+    padding: $padd-cero;
+    width: 100%;
+    display: flex;
+    align-items: center;
+  }
+  
+  .col-3 {
+    height: 75vh;
+    padding: 2vw 0 0 1vw !important;
+    background-color: $color-main;
+    border-radius: 18px 0 0 18px;
+  }
+  .create-list, .create-task {
+    padding: $padd-cero;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .create-list {
+    width: 15vw;
+    padding: $padd-cero;
+  }
+  .create-task {
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
+    display:none;
+    padding: 0 1vw 0 1vw;
+  }
+  .add-button1, .add-button2 {
+    color: $color-main;
+    width: 2em;
+    height: 4vh;
+    border-radius: 20%;
+    border: 2px solid $color-main !important;
+    cursor: pointer;
+  }
+  
+  .list-group {
+    margin-top: 2vw;
+  }
+  
+  .list-group li:hover, .list-group li:focus {
+    
+    color: $hover-text;
+    font-weight: bold;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  .list-box {
+    border-radius: none !important;
+    width: 15vw;
+    align-items: center;
+    text-transform: uppercase;
+  }
+  
+  .active {
+    background-color: $color-active !important;
+    border: none !important;
+  }
+  
+  .col-9 {
+    height: 75vh;
+    background-color: $right-bgnd;
+    border-radius: 0 18px 18px 0;
+  }
+  
+  #list-group {
+    display: none;
+  }
+  .newcateg {
+    font-size: 2vw;
+    color: $color-main;
+  }
+.btn {
+    margin: 0;
+    padding: $padd-cero;
+    width: 2vw;
+    height: 2vw;
+    color: $container-bgnd;
+    background-color: $color-active !important;
+    border: none !important;
+    font-size: 1vw !important;
+}
+  
+  .dropdown {
+    position: relative;
+    display: inline-block;
+  }
+  .card {
+    background-color: $color-main;
+    color: white;
+    padding: 1vh;
+    margin: 1vh;
+    font-size: 1.8vh;
+    border: none;
+    cursor: pointer;
+    width: 9vw;
+  }
+  .card:hover, .card:focus {
+    background-color: $color-active;
+    color: white;
+    text-decoration: none;
+  }
+  
+  .btncard {  /* close boton de tareas*/
+    margin: 0;
+    padding: $padd-cero;
+    background-color: $color-active !important;
+    width: 3vw !important;
+    height: 2vw !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  
+  .taskText {
+    margin: 0;
+    padding: $padd-cero;
+    width: 100%;
+    height: 2vw;
+    margin-left: 1vw;
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+  }
+  
+  .listEditor {
+    font-size: 2.5em;
+    color: $color-main;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin: 1vw;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+  }
+  .create-new { /* quitar centrado de nuevo task*/
+    height: 1vh !important;
+    padding: 0 !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    align-items: flex-start !important;
+  }
+  .inputBox {
+    width: 100%;
+    padding: $padd-cero;
+    margin:  0 1vw 0 1vw;
+    border: none;
+  }
+  .list-group-item {
+    height: 7vh !important;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+  
+  .checkbox-container  {
+    margin: 0;
+    padding: $padd-cero;
+    width: 2vw !important;
+    height: 2vw !important;
+    display: flex !important;
+    justify-content: center !important;
+    align-items: center !important;
+  }
+  .checkbox-container input:checked {
+    display: block;
+  }
+  
+  
+  /*PREGUNTAR COMO AGREGAR CLASS AL HACER CLICK EN CHECKBOX*/
+  li.checked {
+    background-color: #888;
+    color: $container-bgnd;
+    text-decoration: line-through;
+  }

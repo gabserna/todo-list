@@ -26,16 +26,16 @@
             <div class="wrapper2">
                 <div class="inner inner-nav">
                 <nav class="navbar">
-                    <div><h3 class="animate__bounceIn welcome">Welcome to Your ToDo App</h3></div>
+                    <div><h3 class="animate__bounceIn welcome">Welcome: ToDo App</h3></div>
                 </nav>
                 </div>
 
         <div class="container-fluid main">
             <div class="row">
-              <div  class="listas p-3 col-3">
+              <div  class="listas col-3">
                 <div class="create-list">
-                    <input class="new-list" id="list-input-box" type="text" size="24" placeholder="New Category">
-                    <button class="add-button1" onclick="addList()"><i class="fas fa-plus"></i></button>
+                    <input class="new-list" id="input-box" type="text" size="24" placeholder="Add a new category here!">
+                    <button class="add-button1" onclick="newCategory()"><i class="fas fa-plus"></i></button>
                 </div>
                 <div id="lists"></div>
               </div>
@@ -46,12 +46,12 @@
                         <div id="tasksList"></div>
                         
                         <div id="dropdown" class="menu">
-                            <button class="btn" id="dropdownMenuButton" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-trash"></i></button>
+                            <button class="btn" id="dropdownMenuButton" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample"><i class="fa fa-caret-left">&nbsp;</i><i class="fa fa-trash"></i></button>
 
                             <div class="collapse" id="collapseExample">
                                 <a class="card card-body" onclick="removeAllDone()">Completed tasks</a>
                                 <a class="card card-body" onclick="removeList()">This category</a>
-                                <a class="card card-body" onclick="reset()">Everything</a>
+                                <a class="card card-body" onclick="resetEverything()">Everything</a>
                             </div>
                         </div>
                     </div>
@@ -60,8 +60,8 @@
                         <ul  class="list-group">
                             <li id="create" class="list-group-item create-new">
                                 <div id="initial" class="create-task">
-                                    <button class="add-button2" onclick="addTodo()"><i class="fas fa-plus"></i></button>
-                                    <input id="inputBox" class="inputBox" type="text" placeholder=" Write here to create a new task..." >
+                                    <button class="add-button2" onclick="newTask()"><i class="fas fa-plus"></i></button>
+                                    <input id="inputBox" class="inputBox" type="text" placeholder="Add your new task here!" >
                                 </div>
                             </li>
                         </ul>
