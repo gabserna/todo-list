@@ -256,7 +256,7 @@ body {
   
   
   /*PREGUNTAR COMO AGREGAR CLASS AL HACER CLICK EN CHECKBOX*/
-  li.checked {
+  .checked {
     background-color: #888;
     color: $container-bgnd;
     text-decoration: line-through;

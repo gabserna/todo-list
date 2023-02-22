@@ -271,7 +271,7 @@ h3 {
 }
 
 /*PREGUNTAR COMO AGREGAR CLASS AL HACER CLICK EN CHECKBOX*/
-li.checked {
+.checked {
   background-color: #888;
   color: #fff;
   text-decoration: line-through;

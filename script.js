@@ -1,5 +1,6 @@
 let thingsToDo;
 let lists;
+
 function showToDo() {
   if (lists[0]) {
     document.getElementById('initial').style.display = "flex";
@@ -28,25 +29,20 @@ function showToDo() {
     thingsToDo.todos.forEach((list) => {
       if (list.completed === false) {
         taskManager +=
-          `<li id="${list.id}" class="tarea list-group-item"><label class="checkbox-container"><input id="${list.id}" type="checkbox" onclick="taskDone(this.id)"></label><div id="${list.id}" class="taskText" onclick="taskDone(this.id)">${list.text}</div>
+          `<li id="${list.id}" class="tarea list-group-item"><label class="checkbox-container"><input id="${list.id}" type="checkbox" onclick="taskDone(this.id)"></label><div id="${list.id} animated1" class="taskText" onclick="taskDone(this.id)">${list.text}</div>
           <i type="submit" id="${list.id}" class="btncard card card-body fas fa-edit" onclick="editPost(this)"></i>
           <div class="gap"></div>
           <i type="submit" id="${list.id}" class="btncard card card-body fa fa-close" onclick="removeTodo(this.id)"></i>
           </li>`;
       } else {
-        taskManager += `<li id="${list.id}" class="tarea list-group-item"><label class="checkbox-container"><input id="${list.id}" type="checkbox" checked onclick="taskDone(this.id)"></label><div id="${list.id}" class="taskText" onclick="taskDone(this.id)">${list.text}</div>
+        taskManager += `<li id="${list.id}" class="tarea list-group-item"><label class="checkbox-container"><input id="${list.id}" type="checkbox" checked onclick="taskDone(this.id)"></label><div id="${list.id} animated1" class="taskText" onclick="taskDone(this.id)">${list.text}</div>
         <i type="submit" id="${list.id}" class="btncard card card-body fas fa-edit" onclick="editPost(this)"></i>
         <div class="gap"></div>
         <i type="submit" id="${list.id}" class="btncard card card-body fa fa-close" onclick="removeTodo(this.id)"></i></li>`;
       }
     });
   }
-// edit task but NOT WORKING!   <<<<<<<<<<<<<<<
-let editPost = (e) => {
-  input.value = e.parentElement.previousElementSibling.innerHTML;
-  e.parentElement.parentElement.remove();
-};
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
 
   document.getElementById('mythingsToDo-list').innerHTML = taskManager;
   lists.forEach((list) => {
@@ -100,13 +96,56 @@ function removeList() {
   showToDo();
   keepRecord();
 }
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+//ANIMATED BEFORE REMOVE
 
+function removeTodo(clickedId) {
+  //document.getElementById('${list.id}').classList.add('animate__bounceOut');
+  $(".taskText").addClass("animate__bounceOut");    //especificar a cual solamente
+  setTimeout(() => { 
+    thingsToDo.todos.splice(thingsToDo.todos.findIndex((elem) => elem.id === clickedId), 1);
+  }, 1500); 
+  console.log(thingsToDo.todos);
+  showToDo();
+  keepRecord();
+}
+
+/* ----> ok si funciona! (solo para eliminar)
 function removeTodo(clickedId) {
   thingsToDo.todos.splice(thingsToDo.todos.findIndex((elem) => elem.id === clickedId), 1)
   console.log(thingsToDo.todos)
   showToDo();
   keepRecord();
-}
+} */
+
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+
+
+
+
+/* // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+lists.addEventListener('click', function (event) {
+// add class checked to checked item of list
+  const targetElement = event.target;
+  if (event && targetElement.class === '.taskText') {
+    targetElement.classList.toggle('checked');
+  }
+});
+
+
+//edit input task
+let editTask = (elem) => {
+  input.value = elem.parentElement.previousElementSibling.innerHTML;
+  elem.parentElement.parentElement.remove();
+};
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+
+
+
+let editTask = (elem) => {
+  input.value = elem.parentElement.previousElementSibling.innerHTML;
+  elem.parentElement.parentElement.remove();
+};
 
 function taskDone(clickedId) {
   if (thingsToDo.todos[thingsToDo.todos.findIndex((elem) => elem.id === clickedId)].completed === false) {
@@ -138,12 +177,12 @@ function randomIdentifier() {
   return Math.random().toString(36).slice(2)
 }
 function keepRecord() {
-  localStorage.setItem('thingsToDo', JSON.stringify(thingsToDo));
   localStorage.setItem('lists', JSON.stringify(lists));
+  localStorage.setItem('thingsToDo', JSON.stringify(thingsToDo));
 }
 function resetEverything() {
-  localStorage.removeItem('thingsToDo', JSON.stringify(thingsToDo));
   localStorage.removeItem('lists', JSON.stringify(lists));
+  localStorage.removeItem('thingsToDo', JSON.stringify(thingsToDo));
   console.log(JSON.parse(localStorage.getItem('lists')))
   storeThis();
   showToDo();
@@ -165,15 +204,3 @@ function storeThis() {
 storeThis();
 showToDo();
 
-
-// add class checked to checked item of list
-lists.addEventListener('click', function (event) {
-
-  const targetElement = event.target;
-
-  if (event && targetElement.tagName === 'LI') {
-    targetElement.classList.toggle('checked');
-  }
-});
-
-//targetElement rev    <-----
