@@ -30,15 +30,15 @@ function showToDo() {
       if (list.completed === false) {
         taskManager +=
           `<li id="${list.id}" class="tarea list-group-item"><label class="checkbox-container"><input id="${list.id}" type="checkbox" onclick="taskDone(this.id)"></label><div id="${list.id}" class="taskText" onclick="taskDone(this.id)">${list.text}</div>
-          <i type="submit" id="${list.id}" class="btncard card card-body fas fa-edit" onclick="editPost(this)"></i>
+          <i type="submit" id="${list.id}" class="btncard card card-body fas fa-edit" onclick="editPost(this.id)"></i>
           <div class="gap"></div>
-          <i type="submit" id="${list.id}" class="btncard card card-body fa fa-close" onclick="removeTodo(this.id)"></i>
+          <i type="submit" id="${list.id}" class="btncard card card-body fa fa-close" onclick="removeMe(this.id)"></i>
           </li>`;
       } else {
         taskManager += `<li id="${list.id}" class="tarea list-group-item"><label class="checkbox-container"><input id="${list.id}" type="checkbox" checked onclick="taskDone(this.id)"></label><div id="${list.id}" class="checked taskText" onclick="taskDone(this.id)">${list.text}</div>
-        <i type="submit" id="${list.id}" class="btncard card card-body fas fa-edit" onclick="editPost(this)"></i>
+        <i type="submit" id="${list.id}" class="btncard card card-body fas fa-edit" onclick="editPost(this.id)"></i>
         <div class="gap"></div>
-        <i type="submit" id="${list.id}" class="btncard card card-body fa fa-close" onclick="removeTodo(this.id)"></i></li>`;
+        <i type="submit" id="${list.id}" class="btncard card card-body fa fa-close" onclick="removeMe(this.id)"></i></li>`;
       }
     });
   }
@@ -60,7 +60,7 @@ function newCategory() {
     alert('Please write a list name!');
     return false;
   } else {
-    let id = randomIdentifier()
+    let id = randomizer()
     lists.push({ id: id, name: text, todos: [] })
     thingsToDo = lists[lists.length - 1]
     document.getElementById('input-box').value = ''
@@ -75,8 +75,8 @@ function newTask() {
     alert('You need to add some text!');
     return false;
   } else {
-    let id = randomIdentifier()
-    let checkId = randomIdentifier()
+    let id = randomizer()
+    let checkId = randomizer()
     thingsToDo.todos.push({
       id: id,
       checkId: checkId,
@@ -95,7 +95,7 @@ function removeAllDone() {
   keepRecord();
 }
 
-function removeList() {
+function removeCategory() {
   document.getElementById(thingsToDo.id).remove()
   lists.splice(lists.findIndex((elem) => elem.id === thingsToDo.id), 1)
   thingsToDo = lists[0]
@@ -103,7 +103,7 @@ function removeList() {
   keepRecord();
 }
 
-function removeTodo(clickedId) {
+function removeMe(clickedId) {
   document.getElementById(`${clickedId}`).classList.add('animate__bounceOut');
   setTimeout(() => { 
     thingsToDo.todos.splice(thingsToDo.todos.findIndex((elem) => elem.id === clickedId), 1);
@@ -122,17 +122,28 @@ function resetEverything() {
   console.log(JSON.parse(localStorage.getItem('lists')))
 }
 
-/* // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-//edit input task
-let editTask = (elem) => {
-  input.value = elem.parentElement.previousElementSibling.innerHTML;
-  elem.parentElement.parentElement.remove();
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+/*
+function editPost(clickedId) {
+  const taskIndex = thingsToDo.todos.findIndex((elem) => elem.id === clickedId);
+  const taskText = document.getElementById(clickedId).previousElementSibling.innerHTML;
+  thingsToDo.todos[taskIndex].text = taskText;
+  showToDo();
+  keepRecord();
 };
+*/
 
 function editPost(clickedId) {
-};
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
+  const taskIndex = thingsToDo.todos.findIndex((elem) => elem.id === clickedId);
+  const taskText = document.getElementById(`${clickedId}`).previousElementSibling.innerHTML;
+  const newText = prompt('Enter new text:', taskText);
+  if (newText !== null) {
+    thingsToDo.todos[taskIndex].text = newText;
+    showToDo();
+    keepRecord();
+  }
+}
+//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 function taskDone(clickedId) {
   if (thingsToDo.todos[thingsToDo.todos.findIndex((elem) => elem.id === clickedId)].completed === false) {
@@ -154,7 +165,7 @@ function changeList(clickedId) {
 
 }
 
-function randomIdentifier() {
+function randomizer() {
   return Math.random().toString(36).slice(2)
 }
 
