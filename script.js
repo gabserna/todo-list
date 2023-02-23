@@ -35,7 +35,7 @@ function showToDo() {
           <i type="submit" id="${list.id}" class="btncard card card-body fa fa-close" onclick="removeTodo(this.id)"></i>
           </li>`;
       } else {
-        taskManager += `<li id="${list.id}" class="tarea list-group-item"><label class="checkbox-container"><input id="${list.id}" type="checkbox" checked onclick="taskDone(this.id)"></label><div id="${list.id} animated1" class="taskText" onclick="taskDone(this.id)">${list.text}</div>
+        taskManager += `<li id="${list.id}" class="tarea list-group-item"><label class="checkbox-container"><input id="${list.id}" type="checkbox" checked onclick="taskDone(this.id)"></label><div id="${list.id} animated1" class="checked taskText" onclick="taskDone(this.id)">${list.text}</div>
         <i type="submit" id="${list.id}" class="btncard card card-body fas fa-edit" onclick="editPost(this)"></i>
         <div class="gap"></div>
         <i type="submit" id="${list.id}" class="btncard card card-body fa fa-close" onclick="removeTodo(this.id)"></i></li>`;
@@ -96,60 +96,41 @@ function removeList() {
   showToDo();
   keepRecord();
 }
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-//ANIMATED BEFORE REMOVE
 
 function removeTodo(clickedId) {
-  //document.getElementById('${list.id}').classList.add('animate__bounceOut');
-  $(".taskText").addClass("animate__bounceOut");    //especificar a cual solamente
+  document.getElementById(`${clickedId}`).classList.add('animate__bounceOut');
+
   setTimeout(() => { 
     thingsToDo.todos.splice(thingsToDo.todos.findIndex((elem) => elem.id === clickedId), 1);
-  }, 1500); 
+    showToDo();
+    keepRecord();
+  }, 600);
   console.log(thingsToDo.todos);
-  showToDo();
-  keepRecord();
 }
-
-/* ----> ok si funciona! (solo para eliminar)
-function removeTodo(clickedId) {
-  thingsToDo.todos.splice(thingsToDo.todos.findIndex((elem) => elem.id === clickedId), 1)
-  console.log(thingsToDo.todos)
-  showToDo();
-  keepRecord();
-} */
-
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-
-
-
 
 /* // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 lists.addEventListener('click', function (event) {
-// add class checked to checked item of list
+  // add class checked to checked item of list
   const targetElement = event.target;
   if (event && targetElement.class === '.taskText') {
     targetElement.classList.toggle('checked');
   }
 });
 
-
 //edit input task
 let editTask = (elem) => {
   input.value = elem.parentElement.previousElementSibling.innerHTML;
   elem.parentElement.parentElement.remove();
 };
-// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
-
-
-let editTask = (elem) => {
-  input.value = elem.parentElement.previousElementSibling.innerHTML;
-  elem.parentElement.parentElement.remove();
+function editPost(clickedId) {
 };
+// <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<*/
 
 function taskDone(clickedId) {
   if (thingsToDo.todos[thingsToDo.todos.findIndex((elem) => elem.id === clickedId)].completed === false) {
     thingsToDo.todos[thingsToDo.todos.findIndex((elem) => elem.id === clickedId)].completed = true
+    
   } else {
     thingsToDo.todos[thingsToDo.todos.findIndex((elem) => elem.id === clickedId)].completed = false
   }

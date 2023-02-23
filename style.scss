@@ -221,7 +221,7 @@ body {
     justify-content: space-between;
     align-items: flex-start;
   }
-  .create-new { /* quitar centrado de nuevo task*/
+  .create-new {
     height: 1vh !important;
     padding: 0 !important;
     display: flex !important;
@@ -253,11 +253,9 @@ body {
   .checkbox-container input:checked {
     display: block;
   }
-  
-  
-  /*PREGUNTAR COMO AGREGAR CLASS AL HACER CLICK EN CHECKBOX*/
+
   .checked {
-    background-color: #888;
-    color: $container-bgnd;
-    text-decoration: line-through;
+    background-color: $hover-text;
+    color: $color-task-text;
+    text-decoration:#d34815 2px solid line-through;
   }
