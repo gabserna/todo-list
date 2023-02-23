@@ -29,13 +29,13 @@ function showToDo() {
     thingsToDo.todos.forEach((list) => {
       if (list.completed === false) {
         taskManager +=
-          `<li id="${list.id}" class="tarea list-group-item"><label class="checkbox-container"><input id="${list.id}" type="checkbox" onclick="taskDone(this.id)"></label><div id="${list.id} animated1" class="taskText" onclick="taskDone(this.id)">${list.text}</div>
+          `<li id="${list.id}" class="tarea list-group-item"><label class="checkbox-container"><input id="${list.id}" type="checkbox" onclick="taskDone(this.id)"></label><div id="${list.id}" class="taskText" onclick="taskDone(this.id)">${list.text}</div>
           <i type="submit" id="${list.id}" class="btncard card card-body fas fa-edit" onclick="editPost(this)"></i>
           <div class="gap"></div>
           <i type="submit" id="${list.id}" class="btncard card card-body fa fa-close" onclick="removeTodo(this.id)"></i>
           </li>`;
       } else {
-        taskManager += `<li id="${list.id}" class="tarea list-group-item"><label class="checkbox-container"><input id="${list.id}" type="checkbox" checked onclick="taskDone(this.id)"></label><div id="${list.id} animated1" class="checked taskText" onclick="taskDone(this.id)">${list.text}</div>
+        taskManager += `<li id="${list.id}" class="tarea list-group-item"><label class="checkbox-container"><input id="${list.id}" type="checkbox" checked onclick="taskDone(this.id)"></label><div id="${list.id}" class="checked taskText" onclick="taskDone(this.id)">${list.text}</div>
         <i type="submit" id="${list.id}" class="btncard card card-body fas fa-edit" onclick="editPost(this)"></i>
         <div class="gap"></div>
         <i type="submit" id="${list.id}" class="btncard card card-body fa fa-close" onclick="removeTodo(this.id)"></i></li>`;
@@ -89,6 +89,12 @@ function newTask() {
   }
 }
 
+function removeAllDone() {
+  thingsToDo.todos = thingsToDo.todos.filter((elem) => elem.completed === false);
+  showToDo();
+  keepRecord();
+}
+
 function removeList() {
   document.getElementById(thingsToDo.id).remove()
   lists.splice(lists.findIndex((elem) => elem.id === thingsToDo.id), 1)
@@ -99,7 +105,6 @@ function removeList() {
 
 function removeTodo(clickedId) {
   document.getElementById(`${clickedId}`).classList.add('animate__bounceOut');
-
   setTimeout(() => { 
     thingsToDo.todos.splice(thingsToDo.todos.findIndex((elem) => elem.id === clickedId), 1);
     showToDo();
@@ -108,14 +113,16 @@ function removeTodo(clickedId) {
   console.log(thingsToDo.todos);
 }
 
+function resetEverything() {
+  localStorage.removeItem('lists', JSON.stringify(lists));
+  localStorage.removeItem('thingsToDo', JSON.stringify(thingsToDo));
+  console.log(JSON.parse(localStorage.getItem('lists')))
+  storeThis();
+  showToDo();
+  console.log(JSON.parse(localStorage.getItem('lists')))
+}
+
 /* // <<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-lists.addEventListener('click', function (event) {
-  // add class checked to checked item of list
-  const targetElement = event.target;
-  if (event && targetElement.class === '.taskText') {
-    targetElement.classList.toggle('checked');
-  }
-});
 
 //edit input task
 let editTask = (elem) => {
@@ -138,12 +145,6 @@ function taskDone(clickedId) {
   keepRecord();
 }
 
-function removeAllDone() {
-  thingsToDo.todos = thingsToDo.todos.filter((elem) => elem.completed === false);
-  showToDo();
-  keepRecord();
-}
-
 function changeList(clickedId) {
   if (clickedId !== thingsToDo.id) {
     thingsToDo = lists[lists.findIndex((elem) => elem.id === clickedId)]
@@ -153,21 +154,13 @@ function changeList(clickedId) {
 
 }
 
-
 function randomIdentifier() {
   return Math.random().toString(36).slice(2)
 }
+
 function keepRecord() {
   localStorage.setItem('lists', JSON.stringify(lists));
   localStorage.setItem('thingsToDo', JSON.stringify(thingsToDo));
-}
-function resetEverything() {
-  localStorage.removeItem('lists', JSON.stringify(lists));
-  localStorage.removeItem('thingsToDo', JSON.stringify(thingsToDo));
-  console.log(JSON.parse(localStorage.getItem('lists')))
-  storeThis();
-  showToDo();
-  console.log(JSON.parse(localStorage.getItem('lists')))
 }
 
 function storeThis() {
