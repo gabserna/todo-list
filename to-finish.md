@@ -1,2 +1,0 @@
-* ajustar responsive
-* enviar tarea
