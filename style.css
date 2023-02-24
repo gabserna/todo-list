@@ -5,7 +5,7 @@ body {
   margin: 0 auto;
   display: flex;
   justify-content: center;
-  background-color: #33658a;
+  background-color: #1e6091;
   background-image: url("diagmonds-light.png");
   font-family: "Roboto", sans-serif;
 }
@@ -68,7 +68,7 @@ h3 {
   padding: 0;
   margin: 0 auto;
   width: 97%;
-  background-color: #33658a;
+  background-color: #1e6091;
   border-radius: 18px;
 }
 
@@ -96,7 +96,7 @@ h3 {
 .col-3 {
   height: 75vh;
   padding: 2vw 0 0 1vw !important;
-  background-color: #33658a;
+  background-color: #1e6091;
   border-radius: 18px 0 0 18px;
 }
 
@@ -122,11 +122,11 @@ h3 {
 }
 
 .add-button1, .add-button2 {
-  color: #33658a;
+  color: #1e6091;
   width: 2em;
   height: 4vh;
   border-radius: 20%;
-  border: 2px solid #33658a !important;
+  border: 2px solid #1e6091 !important;
   cursor: pointer;
 }
 
@@ -165,7 +165,7 @@ h3 {
 
 .newcateg {
   font-size: 2vw;
-  color: #33658a;
+  color: #1e6091;
 }
 
 .btn {
@@ -185,7 +185,7 @@ h3 {
 }
 
 .card {
-  background-color: #33658a;
+  background-color: #1e6091;
   color: white;
   padding: 1vh;
   margin: 1vh;
@@ -225,7 +225,7 @@ h3 {
 
 .listEditor {
   font-size: 2.5em;
-  color: #33658a;
+  color: #1e6091;
   font-weight: bold;
   text-transform: uppercase;
   margin: 1vw;
