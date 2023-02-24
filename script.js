@@ -29,13 +29,13 @@ function showToDo() {
     thingsToDo.todos.forEach((list) => {
       if (list.completed === false) {
         taskManager +=
-          `<li id="${list.id}" class="tarea list-group-item"><label class="checkbox-container"><input id="${list.id}" type="checkbox" onclick="taskDone(this.id)"></label><div id="${list.id}" class="taskText" onclick="taskDone(this.id)">${list.text}</div>
+          `<li id="${list.id}" class="tarea list-group-item"><label class="checkbox-container"><input id="${list.id}" type="checkbox" onclick="taskDone(this.id)"></label><div id="text_${list.id}" class="taskText" onclick="taskDone(this.id)">${list.text}</div>
           <i type="submit" id="${list.id}" class="btncard card card-body fas fa-edit" onclick="editPost(this.id)"></i>
           <div class="gap"></div>
           <i type="submit" id="${list.id}" class="btncard card card-body fa fa-close" onclick="removeMe(this.id)"></i>
           </li>`;
       } else {
-        taskManager += `<li id="${list.id}" class="tarea list-group-item"><label class="checkbox-container"><input id="${list.id}" type="checkbox" checked onclick="taskDone(this.id)"></label><div id="${list.id}" class="checked taskText" onclick="taskDone(this.id)">${list.text}</div>
+        taskManager += `<li id="${list.id}" class="tarea list-group-item"><label class="checkbox-container"><input id="${list.id}" type="checkbox" checked onclick="taskDone(this.id)"></label><div id="text_${list.id}" class="checked taskText" onclick="taskDone(this.id)">${list.text}</div>
         <i type="submit" id="${list.id}" class="btncard card card-body fas fa-edit" onclick="editPost(this.id)"></i>
         <div class="gap"></div>
         <i type="submit" id="${list.id}" class="btncard card card-body fa fa-close" onclick="removeMe(this.id)"></i></li>`;
@@ -122,20 +122,9 @@ function resetEverything() {
   console.log(JSON.parse(localStorage.getItem('lists')))
 }
 
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-/*
 function editPost(clickedId) {
   const taskIndex = thingsToDo.todos.findIndex((elem) => elem.id === clickedId);
-  const taskText = document.getElementById(clickedId).previousElementSibling.innerHTML;
-  thingsToDo.todos[taskIndex].text = taskText;
-  showToDo();
-  keepRecord();
-};
-*/
-
-function editPost(clickedId) {
-  const taskIndex = thingsToDo.todos.findIndex((elem) => elem.id === clickedId);
-  const taskText = document.getElementById(`${clickedId}`).previousElementSibling.innerHTML;
+  const taskText = document.getElementById(`text_${clickedId}`).innerHTML;
   const newText = prompt('Enter new text:', taskText);
   if (newText !== null) {
     thingsToDo.todos[taskIndex].text = newText;
@@ -143,7 +132,6 @@ function editPost(clickedId) {
     keepRecord();
   }
 }
-//<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
 
 function taskDone(clickedId) {
   if (thingsToDo.todos[thingsToDo.todos.findIndex((elem) => elem.id === clickedId)].completed === false) {
